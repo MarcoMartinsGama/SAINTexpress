@@ -1,5 +1,5 @@
 library(shiny)
-if (!requireNamespace("shinyjs", quietly = TRUE))install.packages("shinyjs")
+install.packages("shinyjs")
 library(shinyjs)
 function(input, output, session) {
   
@@ -26,7 +26,10 @@ function(input, output, session) {
  
   
   observeEvent(input$generate_list,{
-  if(input$windows){
+    
+  if(input$windows){ 
+    output$text <- renderText({"Working... Please Wait."})
+    delay(50,{
     if(input$spc){
       req(input$msspc_interactions,input$msspc_preys,input$msspc_bait)
       cmd_saint <- paste("Windows\\SAINTexpress-spc.exe",
@@ -52,10 +55,12 @@ function(input, output, session) {
         by = c("Bait", "Prey"), all = T)
      write.table(merge, 
                  "merged_list.txt", row.names = F, sep = "\t", quote = F)
-    } } 
+     output$text <- renderText({"Done."})} }) }  
     
     
     if(input$linux){
+      output$text <- renderText({"Working... Please Wait."})
+      delay(50,{
       if(input$spc){
         req(input$msspc_interactions,input$msspc_preys,input$msspc_bait)
         
@@ -82,17 +87,22 @@ function(input, output, session) {
           by = c("Bait", "Prey"), all = T)
         write.table(merge, 
                     "merged_list.txt", row.names = F, sep = "\t", quote = F)
-      } }
+        output$text <- renderText({"Done."})
+      } }) }
       
       
     if(input$mac){
+      output$text <- renderText({"Working... Please Wait."})
+      delay(50,{
         if(input$spc){
           req(input$msspc_interactions,input$msspc_preys,input$msspc_bait)
         }
         if(input$int){
           req(input$msint_interactions,input$msint_preys,input$msint_bait)
         }
-        if (input$merge_spc_int){} }
-    
-  })
+        if (input$merge_spc_int){} 
+      output$text <- renderText({"Done."}) 
+      })
+    }
+    })
 }

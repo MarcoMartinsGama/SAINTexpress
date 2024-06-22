@@ -1,11 +1,8 @@
 library(shiny)
 
-
 fluidPage(
-  # Application title
   titlePanel("SAINTexpress"),
   useShinyjs(),
-  
   sidebarLayout(
     sidebarPanel(
       width = 5,
@@ -22,7 +19,8 @@ fluidPage(
       conditionalPanel(
         condition = "input.int == true && input.spc == true",
         checkboxInput("merge_spc_int", "Merge msspc_list.txt and msint_list.txt?", value = TRUE)),
-      actionButton("generate_list","Start SAINTexpress")
+      actionButton("generate_list","Start SAINTexpress"),
+      textOutput("text")
     ),
     
     mainPanel(
