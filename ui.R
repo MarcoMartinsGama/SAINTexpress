@@ -1,4 +1,6 @@
 library(shiny)
+library(shinyjs)
+
 
 fluidPage(
   titlePanel("SAINTexpress"),
@@ -6,23 +8,24 @@ fluidPage(
   sidebarLayout(
     sidebarPanel(
       width = 5,
-      HTML("<trong>What Operating System are you using ?</strong>"),
-      tags$div(style = "margin-bottom: 20px;",
+      HTML("<strong>What Operating System are you using?</strong>"),
+      tags$div(
+        style = "margin-bottom: 20px;",
         checkboxInput("linux", "Linux", value = FALSE),
         checkboxInput("windows", "Windows", value = FALSE),
-        checkboxInput("mac", "Mac", value = FALSE)),
-      
+        checkboxInput("mac", "Mac", value = FALSE)
+      ),
       HTML("<strong>SAINTexpress Method:</strong>"),
       checkboxInput("spc", "Spectral count", value = TRUE),
       checkboxInput("int", "Intensity", value = FALSE),
-      
       conditionalPanel(
         condition = "input.int == true && input.spc == true",
-        checkboxInput("merge_spc_int", "Merge msspc_list.txt and msint_list.txt?", value = TRUE)),
-      actionButton("generate_list","Start SAINTexpress"),
-      textOutput("text")
+        checkboxInput("merge_spc_int", "Merge msspc_list.txt and msint_list.txt?", value = FALSE)
+      ),
+      actionButton("generate_list", "Start SAINTexpress"),
+      textOutput("text"),
+      uiOutput("download_buttons")
     ),
-    
     mainPanel(
       width = 5,
       conditionalPanel(
