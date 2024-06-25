@@ -32,7 +32,7 @@ function(input, output, session) {
       if (input$windows) {
         if (input$spc) {
           req(input$msspc_interactions, input$msspc_preys, input$msspc_bait)
-          cmd_saint <- paste("Windows/SAINTexpress-spc.exe",
+          cmd_saint <- paste("../Windows/SAINTexpress-spc.exe",
                              input$msspc_interactions$datapath,
                              input$msspc_preys$datapath,
                              input$msspc_bait$datapath)
@@ -46,7 +46,7 @@ function(input, output, session) {
         }
         if (input$int) {
           req(input$msint_interactions, input$msint_preys, input$msint_bait)
-          cmd_saint <- paste("Windows/SAINTexpress-int.exe",
+          cmd_saint <- paste("../Windows/SAINTexpress-int.exe",
                              input$msint_interactions$datapath,
                              input$msint_preys$datapath,
                              input$msint_bait$datapath)
@@ -74,7 +74,7 @@ function(input, output, session) {
       if (input$linux) {
         if (input$spc) {
           req(input$msspc_interactions, input$msspc_preys, input$msspc_bait)
-          cmd_saint <- paste("./Linux/SAINTexpress-spc",
+          cmd_saint <- paste("../Linux/SAINTexpress-spc",
                              input$msspc_interactions$datapath,
                              input$msspc_preys$datapath,
                              input$msspc_bait$datapath)
@@ -87,7 +87,7 @@ function(input, output, session) {
         }
         if (input$int) {
           req(input$msint_interactions, input$msint_preys, input$msint_bait)
-          cmd_saint <- paste("./Linux/SAINTexpress-int",
+          cmd_saint <- paste("../Linux/SAINTexpress-int",
                              input$msint_interactions$datapath,
                              input$msint_preys$datapath,
                              input$msint_bait$datapath)
