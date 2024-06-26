@@ -1,8 +1,12 @@
 library(shiny)
+library(processx)
+
 
 if (!requireNamespace("shinyjs", quietly = TRUE))install.packages("shinyjs")
 library(shinyjs)
 
+print <- getwd()
+print(print)
 function(input, output, session) {
   
   observeEvent(input$linux, {
@@ -37,7 +41,7 @@ function(input, output, session) {
                              input$msspc_preys$datapath,
                              input$msspc_bait$datapath)
           print(cmd_saint)
-          system(cmd_saint)
+          processx::run(cmd_saint)
           file.rename("list.txt", "msspc_list.txt")
           output$msspc_download <- downloadHandler(
             filename = function() { "msspc_list.txt" },
@@ -50,7 +54,7 @@ function(input, output, session) {
                              input$msint_interactions$datapath,
                              input$msint_preys$datapath,
                              input$msint_bait$datapath)
-          system(cmd_saint)
+          processx::run(cmd_saint)
           file.rename("list.txt", "msint_list.txt")
           output$msint_download <- downloadHandler(
             filename = function() { "msint_list.txt" },
@@ -78,7 +82,8 @@ function(input, output, session) {
                              input$msspc_interactions$datapath,
                              input$msspc_preys$datapath,
                              input$msspc_bait$datapath)
-          system(cmd_saint)
+          
+          processx::run(cmd_saint)
           file.rename("list.txt", "msspc_list.txt")
           output$msspc_download <- downloadHandler(
             filename = function() { "msspc_list.txt" },
@@ -91,7 +96,7 @@ function(input, output, session) {
                              input$msint_interactions$datapath,
                              input$msint_preys$datapath,
                              input$msint_bait$datapath)
-          system(cmd_saint)
+          processx::run(cmd_saint)
           file.rename("list.txt", "msint_list.txt")
           output$msint_download <- downloadHandler(
             filename = function() { "msint_list.txt" },
