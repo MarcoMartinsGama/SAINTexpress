@@ -1,5 +1,4 @@
 library(shiny)
-
 if (!requireNamespace("shinyjs", quietly = TRUE))install.packages("shinyjs")
 library(shinyjs)
 
